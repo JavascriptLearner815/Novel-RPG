@@ -1,13 +1,13 @@
 {
   "name": "src",
   "version": "1.0.0",
-  "description": "",
+  "description": "A discord bot that features an RPG playing style and the ability to create your own story and change its environment.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Dean Summer",
   "license": "MIT",
   "dependencies": {
     "discord.js": "^14.9.0"
