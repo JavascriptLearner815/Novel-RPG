@@ -3,7 +3,12 @@ src/config.json
 src/playerdata.json
 src/private/
 src/node_modules/
-src/.eslintrc.json/
+src/.eslintrc.json
+config.json
+playerdata.json
+private/
+node_modules/
+.eslintrc.json
 
 # Logs
 logs
