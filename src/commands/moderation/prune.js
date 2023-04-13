@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
 	cooldown: 5,
@@ -7,7 +7,8 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('prune')
 		.setDescription('Prune up to 99 messages.')
-		.addIntegerOption(option => option.setName('amount').setDescription('Number of messages to prune')),
+		.addIntegerOption(option => option.setRequired(true).setName('amount').setDescription('Number of messages to prune'))
+		.setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
 	async execute(interaction) {
 		const amount = interaction.options.getInteger('amount');
 
