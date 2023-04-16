@@ -4,12 +4,23 @@ require('./deploy-commands');
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
-const { token } = require('./config.json');
+const Sequelize = require('sequelize');
+const { token, databaseUsername, databasePassword } = require('./config.json');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.cooldowns = new Collection();
 client.commands = new Collection();
+client.playerdatabase = new Sequelize('playerdatabase', databaseUsername, databasePassword, {
+	host: 'localhost',
+	dialect: 'sqlite',
+	logging: false,
+	// SQLite only
+	storage: 'database.sqlite',
+});
+client.playerdatabasetags = client.playerdatabase.define('Character', {
+
+});
 const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
 

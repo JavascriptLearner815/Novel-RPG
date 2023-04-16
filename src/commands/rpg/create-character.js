@@ -14,14 +14,6 @@ module.exports = {
 				.setName('name')
 				.setDescription('Name of the character')),
 	async execute(interaction) {
-		const data_json = fs.readFileSync('../../playerdata.json');
-		const data_object = JSON.parse(data_json);
-
-		data_object[interaction.guild.id][interaction.user.id].push({
-			'name': interaction.getString('name'),
-			'rank': 'common',
-			'gold_coins': 0,
-			'owned_towns': [],
-		});
+		
 	},
 };
