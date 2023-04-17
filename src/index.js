@@ -21,15 +21,10 @@ client.playerdatabase = new Sequelize('playerdatabase', databaseUsername, databa
 });
 client.playerdatabasetags = client.playerdatabase.define('Character', {
 	userId: Sequelize.STRING,
-	characterOptionNumber: Sequelize.INTEGER,
 	nickname: Sequelize.STRING,
 	goldCoins: Sequelize.INTEGER,
 	level: Sequelize.INTEGER,
 	totalExperience: Sequelize.INTEGER,
-	characterId: {
-		type: Sequelize.INTEGER,
-		unique: true,
-	},
 });
 const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);

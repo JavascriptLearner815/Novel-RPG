@@ -13,39 +13,14 @@ module.exports = {
 				.setName('name')
 				.setDescription('Nickname of the character')),
 	async execute(interaction) {
-		const characterIds = await interaction.client.playerdatabasetags.findAll({ attributes: ['characterId'] });
-
-		let highestCharacterId = 1;
-
-		for (let i = 0; i < characterIds.length; i++) {
-			if (characterIds[i].characterId.value > highestCharacterId) {
-				highestCharacterId = characterIds[i].value;
-			}
-		}
-
-		const characterOptionNumbers = await interaction.client.playerdatabasetags.findAll({ attributes: ['characterOptionNumber', 'userId'] });
-
-		let highestCharacterOptionNumber = 1;
-
-		for (let i = 0; i < characterOptionNumbers.length; i++) {
-			if (characterOptionNumbers[i].userId.value !== interaction.user.id) continue;
-
-			if (characterOptionNumbers[i].characterOptionNumber.value > highestCharacterOptionNumber) {
-				highestCharacterOptionNumber = characterOptionNumbers[i].characterOptionNumber.value;
-			}
-		}
-
 		try {
 			await interaction.client.playerdatabasetags.create({
 				userId: interaction.user.id,
-				characterOptionNumber: highestCharacterOptionNumber,
 				nickname: interaction.options.getString('name'),
 				goldCoins: 0,
 				level: 1,
 				totalExperience: 0,
-				characterId: highestCharacterId,
 			});
-
 			interaction.reply({ content: 'Success!', ephemeral: true });
 		}
 		catch (error) {
