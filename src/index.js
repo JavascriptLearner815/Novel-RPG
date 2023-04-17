@@ -11,6 +11,7 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.cooldowns = new Collection();
 client.commands = new Collection();
+client.bypasses = new Set();
 client.playerdatabase = new Sequelize('playerdatabase', databaseUsername, databasePassword, {
 	host: 'localhost',
 	dialect: 'sqlite',
@@ -19,7 +20,16 @@ client.playerdatabase = new Sequelize('playerdatabase', databaseUsername, databa
 	storage: 'database.sqlite',
 });
 client.playerdatabasetags = client.playerdatabase.define('Character', {
-
+	userId: Sequelize.STRING,
+	characterOptionNumber: Sequelize.INTEGER,
+	nickname: Sequelize.STRING,
+	goldCoins: Sequelize.INTEGER,
+	level: Sequelize.INTEGER,
+	totalExperience: Sequelize.INTEGER,
+	characterId: {
+		type: Sequelize.INTEGER,
+		unique: true,
+	},
 });
 const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
@@ -52,5 +62,9 @@ for (const file of eventFiles) {
 		client.on(event.name, (...args) => event.execute(...args));
 	}
 }
+
+process.on('unhandledRejection', error => {
+	console.error('Unhandled promise rejection:', error);
+});
 
 client.login(token);

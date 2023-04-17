@@ -1,3 +1,7 @@
+# hide player information for security reasons
+src/database.sqlite
+database.sqlite
+
 # IMPORTANT: do NOT push sensitive information!
 src/config.json
 src/playerdata.json
