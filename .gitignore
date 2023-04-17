@@ -7,7 +7,14 @@ src/config.json
 src/playerdata.json
 src/private/
 src/node_modules/
-src/.eslintrc.json/
+src/.eslintrc.json
+
+private/
+
+config.json
+playerdata.json
+node_modules/
+.eslintrc.json
 
 # Logs
 logs
